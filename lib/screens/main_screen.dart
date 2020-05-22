@@ -3,6 +3,7 @@ import 'package:karaoke_dictionary/consts/constant.dart';
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:fancy_bottom_navigation/internal/tab_item.dart';
 import 'home_screen.dart';
+import 'edit_screen.dart';
 
 class MainScreen extends StatefulWidget{
   @override 
@@ -25,6 +26,7 @@ class _MainScreenState extends State<MainScreen>{
         controller: _pageController,
         children: <Widget>[
           HomeScreen(),
+          EditScreen(),
         ],
       ),
 
@@ -37,8 +39,7 @@ class _MainScreenState extends State<MainScreen>{
         ],
         onTabChangedListener: (position) {  
           setState(() {
-            // _pageController.jumpToPage(position);
-
+            _pageController.animateToPage(position, duration: Duration(milliseconds: 500), curve: Curves.ease);
           });
         },
       ),
