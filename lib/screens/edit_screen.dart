@@ -80,7 +80,7 @@ class _EditScreenState extends State<EditScreen>{
                 height: 50,
                 width: 50,
                 decoration: BoxDecoration(
-                  color: Colors.blueAccent[100],
+                  border: Border.all(width:1),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: InkWell(
