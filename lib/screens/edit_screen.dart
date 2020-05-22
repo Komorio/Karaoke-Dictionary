@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:karaoke_dictionary/consts/file_manager.dart';
 import 'package:karaoke_dictionary/widgets/songdata.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:path_provider/path_provider.dart';
@@ -149,6 +150,8 @@ class _EditScreenState extends State<EditScreen>{
     _tjNumberController.clear();
     _kyNumberController.clear();
     
+    FileManager.SaveMemories();
+
     saveSuccess();
   }
 }

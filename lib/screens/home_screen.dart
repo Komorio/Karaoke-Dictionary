@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:karaoke_dictionary/consts/file_manager.dart';
 import 'package:karaoke_dictionary/widgets/songdata.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -21,19 +22,28 @@ class _HomeScreenState extends State<HomeScreen>{
           ),
 
         actions: <Widget>[
+          CupertinoButton(child: Text("No"),onPressed: () => Navigator.of(context).pop(),),
+          
           CupertinoButton(
             child: Text("Yes"),
             onPressed: (){
               setState(() {
                 SongData.songDatas.remove(map);
+                FileManager.SaveMemories();
               });
               Navigator.of(context).pop();
             },
           ),
-          CupertinoButton(child: Text("No"),onPressed: () => Navigator.of(context).pop(),),
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    
+    FileManager.refreshFunction = () => setState((){});
   }
 
   @override
