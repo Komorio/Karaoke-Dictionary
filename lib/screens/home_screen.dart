@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:karaoke_dictionary/widgets/songdata.dart';
+import 'package:flutter/cupertino.dart';
 
 class HomeScreen extends StatefulWidget{
   @override
@@ -7,6 +8,33 @@ class HomeScreen extends StatefulWidget{
 }
 
 class _HomeScreenState extends State<HomeScreen>{
+
+  void deleteSong(BuildContext context, Map map){
+    showCupertinoDialog(
+      context: context, 
+      builder: (_) => CupertinoAlertDialog(
+        title: Text(
+            "Delete me??",
+            style: TextStyle(
+              color: Colors.blueAccent[300],
+            )
+          ),
+
+        actions: <Widget>[
+          CupertinoButton(
+            child: Text("Yes"),
+            onPressed: (){
+              setState(() {
+                SongData.songDatas.remove(map);
+              });
+              Navigator.of(context).pop();
+            },
+          ),
+          CupertinoButton(child: Text("No"),onPressed: () => Navigator.of(context).pop(),),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context){
@@ -27,9 +55,13 @@ class _HomeScreenState extends State<HomeScreen>{
           ),
           SizedBox(width: 10,),
           Container(
-            color: color,
             height: 10,
             width: 30,
+
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(10),
+            ),
           )
         ],
       );
@@ -114,7 +146,8 @@ class _HomeScreenState extends State<HomeScreen>{
 
                         ],
                       ),
-                    )
+                    ),
+                    onLongPress: () => deleteSong(context, songData),
                   );
                 },
               ),
